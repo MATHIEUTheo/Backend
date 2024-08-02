@@ -1,24 +1,24 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const fixJson = require('./middleware/fixJson');
-const path = require('path');
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const fixJson = require('./middleware/fixJson')
+const path = require('path')
 
-const app = express();
-const port = 4000;
+const app = express()
+const port = 4000
 
-app.use(fixJson);
+app.use(fixJson)
 
-app.use(cors());
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+app.use(cors())
+mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
-const authRoutes = require('./routes/auth');
-const bookRoutes = require('./routes/book');
-app.use('/api/auth', authRoutes);
-app.use('/api/books', bookRoutes);
+const authRoutes = require('./routes/auth')
+const bookRoutes = require('./routes/book')
+app.use('/api/auth', authRoutes)
+app.use('/api/books', bookRoutes)
 
 app.listen(port, () => {
-	  console.log(`Server running on port ${port}`);
-});
+	  console.log(`Server running on port ${port}`)
+})
