@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
 		    } catch (err) {
 			        res.status(400).json({ message: "Compte déjà existant" })
 			      }
-});
+})
 
 router.post('/login', async (req, res) => {
 	  const { email, password } = req.body
@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
 	  const validPass = await bcrypt.compare(password, user.password)
 	  if (!validPass) return res.status(400).json({ message: 'Email ou mot de passe invalide' })
 
-	  const token = jwt.sign({ _id: user._id }, 'SECRET_KEY')
+	  const token = jwt.sign({ _id: user._id }, '8nTb#98/3HHi)f')
 	  const userId = user._id
 	  res.status(200).json({ token, userId })
 })

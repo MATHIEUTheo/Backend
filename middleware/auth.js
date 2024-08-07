@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
 	  if (!token) return res.status(401).json({ message: 'Accès refusé' })
 
 	  try {
-		      const verified = jwt.verify(token, 'SECRET_KEY')
+		      const verified = jwt.verify(token, '8nTb#98/3HHi)f')
 		      req.user = verified
 
 		      next()
@@ -13,4 +13,3 @@ module.exports = function (req, res, next) {
 			        res.status(400).json({ message: 'Invalid Token' })
 			      }
 }
-
