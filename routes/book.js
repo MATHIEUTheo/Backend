@@ -16,14 +16,14 @@ const SERVER_URL = process.env.SERVER_URL || "http://localhost:4000"
 router.get("/bestrating", async (req, res) => {
   try {
     const bestRatedBooks = await Book.find()
-      .sort({ averageRating: -1 })
-      .limit(3)
+      .sort({ averageRating: -1 }) //ordre de tri décroisant
+      .limit(3) //limite max a 3
 
     res.status(200).json(bestRatedBooks)
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
-});
+})
 
 router.post("/", auth, upload.single("image"), async (req, res) => {
   try {
