@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cors())
 mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 const authRoutes = require('./routes/auth')
 const bookRoutes = require('./routes/book')
