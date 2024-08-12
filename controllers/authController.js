@@ -1,6 +1,10 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const dotenv = require('dotenv')
+
+dotenv.config()
+const secret_key=process.env.SECRET_KEY
 
 const validatePassword = (password) => {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/
@@ -34,7 +38,7 @@ exports.login = async (req, res) => {
   if (user) validPass = await bcrypt.compare(password, user.password)
   if (!user || !validPass) return res.status(401).json({ message: 'Email ou mot de passe invalide' })
 
-  const token = jwt.sign({ _id: user._id }, '8nTb#98/3HHi)f')
+  const token = jwt.sign({ _id: user._id }, secret_key)
   const userId = user._id
   res.status(200).json({ token, userId })
 }

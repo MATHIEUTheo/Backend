@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const dotenv = require ('dotenv')
 const cors = require('cors')
 const path = require('path')
 
@@ -9,7 +10,13 @@ const port = 4000
 app.use(express.json())
 
 app.use(cors())
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
+dotenv.config()
+
+const dbName=process.env.MONGODB_DB
+const dbHost=process.env.MONGODB_HOST
+const dbPort=process.env.MONGODB_PORT
+const uriDb=`mongodb://${dbHost}:${dbPort}/${dbName}`
+mongoose.connect(uriDb, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
